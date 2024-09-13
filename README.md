@@ -417,6 +417,16 @@ Remember to add this CNAME record in cloud DNS
     
     ghs.googlehosted.com.
 
+## Step 19: LLM 
+
+    echo "Adding LLM Models on Cloud SQL Instance"
+    gcloud run jobs create llm-model-migration --image=$LLM_MODEL_IMPORT_ID \
+      --vpc-connector=disearch-vpc-connector --set-cloudsql-instances=$PROJECT_ID:us-central1:disearch-db \
+      --region=us-central1 --set-secrets=DB_HOST=DB_HOST:latest,DB_PASSWORD=DB_PASSWORD:latest \
+      --project=$PROJECT_ID --service-account=terraform@$PROJECT_ID.iam.gserviceaccount.com
+
+    gcloud run jobs execute llm-model-migration --region us-central1
+
 ## What we have done in deployer image
 
 
