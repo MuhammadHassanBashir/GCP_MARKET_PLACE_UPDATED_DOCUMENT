@@ -28,57 +28,57 @@ Use the following gcloud command to create a new service account:
 
 Assign the required IAM roles to the service account with the following command:     
     
-    gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-      --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-      --role="roles/compute.admin"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/compute.storageAdmin"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/editor"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/container.admin"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/monitoring.viewer"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/secretmanager.admin"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/secretmanager.secretAccessor"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/iam.securityAdmin"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/vpcaccess.admin"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/iam.serviceAccountAdmin"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/storage.admin"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-    --role="roles/iam.workloadIdentityUser"
-
-  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-    --member="serviceAccount:terraform@"YOUR_GCP_PROJECT_ID".iam.gserviceaccount.com" \
-    --role="roles/servicenetworking.networksAdmin"
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+          --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+          --role="roles/compute.admin"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+        --role="roles/compute.storageAdmin"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+        --role="roles/editor"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+        --role="roles/container.admin"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+        --role="roles/monitoring.viewer"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+        --role="roles/secretmanager.admin"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+        --role="roles/secretmanager.secretAccessor"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+        --role="roles/iam.securityAdmin"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+        --role="roles/vpcaccess.admin"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+        --role="roles/iam.serviceAccountAdmin"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+        --role="roles/storage.admin"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+        --role="roles/iam.workloadIdentityUser"
+    
+      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+        --member="serviceAccount:terraform@"YOUR_GCP_PROJECT_ID".iam.gserviceaccount.com" \
+        --role="roles/servicenetworking.networksAdmin"
 
 
 ## Step 4: Generate the Service Account Key
