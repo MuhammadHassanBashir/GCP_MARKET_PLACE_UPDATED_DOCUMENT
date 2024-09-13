@@ -416,3 +416,18 @@ Make sure to add the Website URL here.
 Remember to add this CNAME record in cloud DNS
     
     ghs.googlehosted.com.
+
+## What we have done in deployer image
+
+
+    According to the deployer image documentation, we have created a directory containing 2 files and 1 folder.
+    
+    Folder Name: chart
+    In this folder, we have the main chart named disearch. The templates for the disearch chart are placed in the disearch/chart/templates/ folder, and the values are set in the disearch/chart/values.yaml file. Additionally, inside the main disearch chart folder, we have other sub-charts like etcd, gke-templates, keda, and redis, which are stored in the disearch/chart/charts/ folder.
+    
+    schema.yaml File:
+    This file defines the release version, images, and variable information for the Helm chart’s values.yaml file. According to the deployer image documentation, the schema.yaml file maps to the Helm chart’s values.yaml file, allowing Helm to take the values from values.yaml. If a value is specified in both the values.yaml file and the schema.yaml file, the value from the schema.yaml file will override the corresponding value in values.yaml. The schema.yaml essentially provides the values to the Helm chart through the values.yaml file.
+    
+    Dockerfile:
+    In this file, we are copying both the schema.yaml file and the chart/ folder.
+
