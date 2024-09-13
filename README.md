@@ -265,26 +265,26 @@ Deploying Cloud Function Metadata Extractor
 
     Decode the base64 encoded endpoint for verfication
 
-      echo <INTERNAL_ENDPOINT_ENCODED_VALUE> | base64 --decode
+        echo <INTERNAL_ENDPOINT_ENCODED_VALUE> | base64 --decode
   
   - Website URL: CLIENT WEBSITE URL
-  - Client Email Address: EMAIL ADDRESS
+  - Client Email Address:CLIENT EMAIL ADDRESS
   
   - DB User
 
-    gcloud secrets versions access latest --secret="DB_USER"
+        gcloud secrets versions access latest --secret="DB_USER"
  
   - DB Password 
 
-    gcloud secrets versions access latest --secret="DB_PASSWORD"
+        gcloud secrets versions access latest --secret="DB_PASSWORD"
 
   - DB Host
 
-    gcloud secrets versions access latest --secret="DB_HOST"
+        gcloud secrets versions access latest --secret="DB_HOST"
 
   - GCP Bucket 
 
-    gcloud secrets versions access latest --secret="GCP_BUCKET"
+        gcloud secrets versions access latest --secret="GCP_BUCKET"
 
   - Cloudfunction URLs
     Name: 
