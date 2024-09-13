@@ -1,5 +1,3 @@
-# GCP_MARKET_PLACE_UPDATED_DOCUMENT
-
 This guide provides instructions on how to set up a complete project in GCP.
 
 ## Step 1: Authenticate with Google Cloud:
@@ -28,57 +26,57 @@ Use the following gcloud command to create a new service account:
 
 Assign the required IAM roles to the service account with the following command:     
     
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-          --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-          --role="roles/compute.admin"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/compute.storageAdmin"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/editor"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/container.admin"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/monitoring.viewer"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/secretmanager.admin"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/secretmanager.secretAccessor"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/iam.securityAdmin"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/vpcaccess.admin"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/iam.serviceAccountAdmin"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/storage.admin"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/iam.workloadIdentityUser"
-    
-      gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
-        --member="serviceAccount:terraform@"YOUR_GCP_PROJECT_ID".iam.gserviceaccount.com" \
-        --role="roles/servicenetworking.networksAdmin"
+    gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+      --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+      --role="roles/compute.admin"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/compute.storageAdmin"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/editor"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/container.admin"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/monitoring.viewer"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/secretmanager.admin"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/secretmanager.secretAccessor"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/iam.securityAdmin"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/vpcaccess.admin"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/iam.serviceAccountAdmin"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/storage.admin"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/iam.workloadIdentityUser"
+
+  gcloud projects add-iam-policy-binding "YOUR_GCP_PROJECT_ID" \
+    --member="serviceAccount:terraform@"YOUR_GCP_PROJECT_ID".iam.gserviceaccount.com" \
+    --role="roles/servicenetworking.networksAdmin"
 
 
 ## Step 4: Generate the Service Account Key
@@ -124,6 +122,13 @@ Connecting the cluster
 
     gcloud secrets versions add DB_HOST --data-file=<(gcloud sql instances describe disearch-db --format="json(ipAddresses)" | jq -r '.ipAddresses[] | select(.type == "PRIVATE") | .ipAddress')
 
+## Step 9: Creating Postgres Connection String 
+
+    ENCODED_CONN_STRING=$(echo -n "postgresql://postgres:$(gcloud secrets versions access latest --secret=DB_PASSWORD)@$(gcloud secrets versions access latest --secret=DB_HOST)/postgres" | base64 -w 0)
+
+Use below commands for Verificaiton
+
+    echo "ENCODED_CONN_STRING: $(echo "$ENCODED_CONN_STRING" | base64 --decode)"
 
 ## Step 10: Cloud Function Deployments
 
@@ -243,48 +248,48 @@ Deploying Cloud Function Metadata Extractor
   
   You can obtain the required variable information using the following commands.
 
-  - GCP project id: Client Google Cloud Project ID
+  - GCP project id: Your GCP Project ID
   - GCP Cloud SQL Db Connection String in Base64 Encoded format
 
     Creating Postgres Connection String
 
-        ENCODED_CONN_STRING=$(echo -n "postgresql://postgres:$(gcloud secrets versions access latest --secret=DB_PASSWORD)@$(gcloud secrets versions access latest --secret=DB_HOST)/postgres" | base64 -w 0)
+      ENCODED_CONN_STRING=$(echo -n "postgresql://postgres:$(gcloud secrets versions access latest --secret=DB_PASSWORD)@$(gcloud secrets versions access latest --secret=DB_HOST)/postgres" | base64 -w 0)
 
     Use below commands for Verificaiton
 
-        echo "$ENCODED_CONN_STRING"
+      echo "$ENCODED_CONN_STRING"
   
 
-        echo "ENCODED_CONN_STRING: $(echo "$ENCODED_CONN_STRING" | base64 --decode)"
+      echo "ENCODED_CONN_STRING: $(echo "$ENCODED_CONN_STRING" | base64 --decode)"
 
-  - GKE kube API Server URL in Base64 encoded format
+  - GKE kube API Server URL in Base64 Encoded format
 
     Fetch private endpoint of Cluster
 
-        echo "INTERNAL_ENDPOINT: $(echo -n "https://$(gcloud container clusters describe disearch-cluster --zone us-central1-c --format="get(privateClusterConfig.privateEndpoint)")" | base64)"
+      echo "INTERNAL_ENDPOINT: $(echo -n "https://$(gcloud container clusters describe disearch-cluster --zone us-central1-c --format="get(privateClusterConfig.privateEndpoint)")" | base64)"
 
     Decode the base64 encoded endpoint for verfication
 
-        echo <INTERNAL_ENDPOINT_ENCODED_VALUE> | base64 --decode
+      echo <INTERNAL_ENDPOINT_ENCODED_VALUE> | base64 --decode
   
   - Website URL: CLIENT WEBSITE URL
-  - Client Email Address:CLIENT EMAIL ADDRESS
+  - Client Email Address: EMAIL ADDRESS
   
   - DB User
 
-        gcloud secrets versions access latest --secret="DB_USER"
+    gcloud secrets versions access latest --secret="DB_USER"
  
   - DB Password 
 
-        gcloud secrets versions access latest --secret="DB_PASSWORD"
+    gcloud secrets versions access latest --secret="DB_PASSWORD"
 
   - DB Host
 
-        gcloud secrets versions access latest --secret="DB_HOST"
+    gcloud secrets versions access latest --secret="DB_HOST"
 
   - GCP Bucket 
 
-        gcloud secrets versions access latest --secret="GCP_BUCKET"
+    gcloud secrets versions access latest --secret="GCP_BUCKET"
 
   - Cloudfunction URLs
     Name: 
