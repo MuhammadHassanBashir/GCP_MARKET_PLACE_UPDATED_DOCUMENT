@@ -243,7 +243,7 @@ Deploying Cloud Function Metadata Extractor
   
   You can obtain the required variable information using the following commands.
 
-  - GCP project id: Your GCP Project ID
+  - GCP project id: Client Google Cloud Project ID
   - GCP Cloud SQL Db Connection String in Base64 Encoded format
 
     Creating Postgres Connection String
