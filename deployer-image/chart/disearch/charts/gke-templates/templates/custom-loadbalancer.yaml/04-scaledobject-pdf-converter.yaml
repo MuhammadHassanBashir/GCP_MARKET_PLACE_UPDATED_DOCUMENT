@@ -1,0 +1,19 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: pdf-converter-scaledobject
+spec:
+  cooldownPeriod: 30
+  maxReplicaCount: 50
+  minReplicaCount: 1
+  pollingInterval: 5
+  scaleTargetRef:
+    kind: Deployment
+    name: pdf-convert-deployment
+  triggers:
+  - metadata:
+      connectionFromEnv: CLOUD_SQL_DB_CONN
+      query: SELECT LEAST(count(*), 50) FROM "disearch_search".documents WHERE (file_name LIKE '%.docx' OR file_name LIKE '%.doc' OR file_name LIKE '%.pptx' OR file_name LIKE '%.ppt' OR file_name LIKE '%.txt') AND created_at >= NOW() - INTERVAL '1 days' AND ('uploaded' = ANY (status) OR 'processing' = ANY (status) OR 'Processing' = ANY (status)) AND is_deleted IS NOT TRUE;
+      targetQueryValue: "1"
+    type: postgresql
+

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pdf-convert-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: pdf-convert
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: pdf-convert
+    spec:
+      serviceAccountName: {{ .Values.serviceAccountName }}
+      containers:
+      - name: pdf-convert
+        image: gcr.io/{{ .Values.projectID }}/disearch/pdf-converter:1.0.8
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.pdfConvert.containerPort }}
+        env:
+        - name: CLOUD_SQL_DB_CONN
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-db-conn
+              key: CLOUD_SQL_DB_CONN
+

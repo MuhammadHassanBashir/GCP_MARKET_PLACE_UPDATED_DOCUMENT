@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: get-pods-binding
+subjects:
+- kind: ServiceAccount
+  name: lb-service-account
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: lb-pods-role
+  apiGroup: rbac.authorization.k8s.io
+

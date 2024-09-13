@@ -1,0 +1,36 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: "{{ .Release.Name }}"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+    app.kubernetes.io/name: "{{ .Release.Name }}"
+  annotations:
+    marketplace.cloud.google.com/deploy-info: '{"partner_id": "aretecinc", "product_id": "disearch-byol.endpoints.aretecinc-public.cloud.goog", "partner_name": "Aretec-inc"}'
+spec:
+  descriptor:
+    type: disearch
+    version: '1.0.8'
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "{{ .Release.Name }}"
+  addOwnerRef: true
+  componentKinds:
+  - group: ''
+    kind: PersistentVolumeClaim
+  - group: ''
+    kind: Secret
+  - group: ''
+    kind: Service
+  - group: apps
+    kind: Deployment
+  - group: ''
+    kind: ConfigMap
+  - group: ''
+    kind: ClusterRoleBinding
+  - group: ''
+    kind: ClusterRole
+  - group: ''
+    kind: ServiceAccount
+  - group: keda.sh
+    kind: ScaledObject 

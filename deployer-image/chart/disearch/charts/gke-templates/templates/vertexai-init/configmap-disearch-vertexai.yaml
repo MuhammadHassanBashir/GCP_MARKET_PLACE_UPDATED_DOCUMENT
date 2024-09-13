@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: disearch-vertexai-config
+  namespace: default
+data:
+  OPENAI_API_KEY: {{ .Values.vertexai.openaiApiKey }}
+  status_cloud_fn: {{ .Values.vertexai.statusCloudFn }}
+  image_summary_cloud_fn: {{ .Values.vertexai.imageSummaryCloudFn }}
+  update_metadata_fn: {{ .Values.vertexai.updateMetadataFn }}
+  schema: {{ .Values.vertexai.schema }}
+

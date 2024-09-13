@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadbalancer-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: loadbalancer
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: loadbalancer
+    spec:
+      containers:
+      - name: loadbalancer
+        image: gcr.io/{{ .Values.projectID }}/disearch/loadbalancer:1.0.8
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.loadbalancer.containerPort }}
+        env:
+        - name: K8S_BEARER_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: lb-service-account-token
+              key: token
+        - name: K8S_API_SERVER_URL
+          valueFrom:
+            secretKeyRef:
+              name: lb-service-secret
+              key: K8S_API_SERVER_URL
+        - name: ETCD_HOST
+          valueFrom:
+            secretKeyRef:
+              name: lb-service-secret
+              key: ETCD_HOST
+        - name: ETCD_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: lb-service-secret
+              key: ETCD_PASSWORD
+

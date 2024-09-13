@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vertexai-service
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+spec:
+  selector:
+    app: vertexai
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: {{ .Values.vertexai.containerPort }}
+  type: LoadBalancer
+

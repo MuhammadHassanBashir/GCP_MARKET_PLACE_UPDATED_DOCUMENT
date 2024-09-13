@@ -1,0 +1,27 @@
+vertexai.yaml 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: disearch-configmap
+  namespace: default
+data:
+  ALLOWED_ORIGIN: {{ .Values.disearch.allowedOrigin }}	
+  AUTH_EMAIL: {{ .Values.disearch.authEmail }}
+  schema:	disearch	 
+  appName:	disearch
+  IS_PENSDOWN: "false"	
+  IS_CONTEXT:	"false"	
+  DB_USER: {{ .Values.disearch.dbUser }}
+  GCP_BUCKET: {{ .Values.disearch.gcpBucket }}	
+  DB_HOST: {{ .Values.disearch.dbHost }}	
+  DB_PASSWORD: {{ .Values.disearch.dbPassword }}
+  DOCUMENT_CHAT_URL: "http://doc-chat-service.default.svc.cluster.local"
+  LOG_INDEX: {{ .Values.projectID }}	
+  project_id: {{ .Values.projectID }}	
+  vertex_ai_search_summary_url: "http://vertexai-summary-service.default.svc.cluster.local"
+  vertex_ai_followup_url: "http://vertex-ai-followup-service.default.svc.cluster.local" 
+  IS_VERTEX_AI:	"true"
+  vertex_ai_search_base_url: "http://vertexai-citation-service.default.svc.cluster.local"
+  vertex_ai_init_base_url: "http://vertexai-service.default.svc.cluster.local"	
+  APP_VERSION: "ST" 
+	

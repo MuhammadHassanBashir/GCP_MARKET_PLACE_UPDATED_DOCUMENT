@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vertexai-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: vertexai
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: vertexai
+    spec:
+      serviceAccountName: {{ .Values.serviceAccountName }}
+      containers:
+      - name: vertexai
+        image: gcr.io/{{ .Values.projectID }}/disearch/vertexai-init:1.0.8
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.vertexai.containerPort }}
+        envFrom:
+        - configMapRef:
+            name: disearch-vertexai-config
+

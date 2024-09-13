@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: lb-pods-role
+rules:
+- apiGroups: [""]
+  resources: ["pods","deployments","services"]
+  verbs: ["get", "list","watch"]
+

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: disearch-service
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+spec:
+  selector:
+    app: disearch
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: {{ .Values.disearch.containerPort }}
+  type: LoadBalancer

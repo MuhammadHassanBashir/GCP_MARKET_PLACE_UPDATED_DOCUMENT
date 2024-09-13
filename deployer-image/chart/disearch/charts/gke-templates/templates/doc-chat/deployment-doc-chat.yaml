@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doc-chat-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: doc-chat
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: doc-chat
+    spec:
+      serviceAccountName: {{ .Values.serviceAccountName }}
+      containers:
+      - name: doc-chat
+        image: gcr.io/{{ .Values.projectID }}/disearch/document-chat:1.0.8
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.docChat.containerPort }}
+

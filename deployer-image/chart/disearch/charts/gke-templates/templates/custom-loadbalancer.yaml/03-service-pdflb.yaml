@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pdflb
+  annotations:
+    networking.gke.io/load-balancer-type: Internal
+spec:
+  selector:
+    app: loadbalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: {{ .Values.loadbalancer.containerPort }}
+  type: LoadBalancer
+
