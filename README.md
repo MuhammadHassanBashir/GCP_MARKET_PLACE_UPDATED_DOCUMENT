@@ -248,20 +248,20 @@ Deploying Cloud Function Metadata Extractor
 
     Creating Postgres Connection String
 
-      ENCODED_CONN_STRING=$(echo -n "postgresql://postgres:$(gcloud secrets versions access latest --secret=DB_PASSWORD)@$(gcloud secrets versions access latest --secret=DB_HOST)/postgres" | base64 -w 0)
+        ENCODED_CONN_STRING=$(echo -n "postgresql://postgres:$(gcloud secrets versions access latest --secret=DB_PASSWORD)@$(gcloud secrets versions access latest --secret=DB_HOST)/postgres" | base64 -w 0)
 
     Use below commands for Verificaiton
 
-      echo "$ENCODED_CONN_STRING"
+        echo "$ENCODED_CONN_STRING"
   
 
-      echo "ENCODED_CONN_STRING: $(echo "$ENCODED_CONN_STRING" | base64 --decode)"
+        echo "ENCODED_CONN_STRING: $(echo "$ENCODED_CONN_STRING" | base64 --decode)"
 
   - GKE kube API Server URL in Base64 Encoded format
 
     Fetch private endpoint of Cluster
 
-      echo "INTERNAL_ENDPOINT: $(echo -n "https://$(gcloud container clusters describe disearch-cluster --zone us-central1-c --format="get(privateClusterConfig.privateEndpoint)")" | base64)"
+        echo "INTERNAL_ENDPOINT: $(echo -n "https://$(gcloud container clusters describe disearch-cluster --zone us-central1-c --format="get(privateClusterConfig.privateEndpoint)")" | base64)"
 
     Decode the base64 encoded endpoint for verfication
 
