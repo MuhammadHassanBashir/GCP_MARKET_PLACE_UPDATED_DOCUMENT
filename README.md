@@ -257,7 +257,7 @@ Deploying Cloud Function Metadata Extractor
 
         echo "ENCODED_CONN_STRING: $(echo "$ENCODED_CONN_STRING" | base64 --decode)"
 
-  - GKE kube API Server URL in Base64 Encoded format
+  - GKE kube API Server URL in Base64 encoded format
 
     Fetch private endpoint of Cluster
 
