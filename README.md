@@ -482,3 +482,32 @@ Run the mpdev Commands: After setting up mpdev, you can run any of the available
 
     This tool is highly useful for managing applications on Google Cloud Marketplace and automating deployment processes.
     
+## Issue daigonies during mpdev installation
+
+Since $HOME/bin is not in your $PATH, you'll need to add it manually. Here's how you can do that:
+    
+    Add $HOME/bin to your $PATH by modifying your ~/.bashrc file:
+    
+    echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+   
+ Reload your shell configuration so the changes take effect:
+    
+    source ~/.bashrc
+
+Verify the updated $PATH:
+    
+Run the following command to ensure that $HOME/bin is now included in your $PATH:
+    
+    echo $PATH
+    
+You should see something like this:
+
+    /home/hassan/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+    
+Test mpdev:
+    
+Now, try running the mpdev command again:
+    
+    mpdev
+   
+This should resolve the issue! Let me know if it works or if you encounter any further problems.
