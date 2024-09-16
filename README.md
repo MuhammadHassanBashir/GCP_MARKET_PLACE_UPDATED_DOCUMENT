@@ -697,5 +697,91 @@ After the i rerun **mpdev doctor** again and it is showing that everything is go
     
     Everything looks good to go!!
 
+## How run deployer image using mpdev install command..
+
+    When deploying the deployer image from Google Cloud Marketplace, you need to provide following variables.
+    
+    You can obtain the required variable information using the following commands.
+    
+    GCP project id: Your GCP Project ID
+    
+    GCP Cloud SQL Db Connection String in Base64 Encoded format
+    
+    Creating Postgres Connection String
+    
+    ENCODED_CONN_STRING=$(echo -n "postgresql://postgres:$(gcloud secrets versions access latest --secret=DB_PASSWORD)@$(gcloud secrets versions access latest --secret=DB_HOST)/postgres" | base64 -w 0)
+    
+    Use below commands for Verificaiton
+    
+    echo "$ENCODED_CONN_STRING"
+    
+    echo "ENCODED_CONN_STRING: $(echo "$ENCODED_CONN_STRING" | base64 --decode)"
+    
+    GKE kube API Server URL in Base64 Encoded format
+    
+    Fetch private endpoint of Cluster
+
+    echo "INTERNAL_ENDPOINT: $(echo -n "https://$(gcloud container clusters describe disearch-cluster --zone us-central1-c --format="get(privateClusterConfig.privateEndpoint)")" | base64)"
+    
+        Decode the base64 encoded endpoint for verfication
+    
+          echo <INTERNAL_ENDPOINT_ENCODED_VALUE> | base64 --decode
+      
+    - Website URL: CLIENT WEBSITE URL
+    - Client Email Address: EMAIL ADDRESS
+      
+    - DB User
+    
+        gcloud secrets versions access latest --secret="DB_USER"
+     
+    - DB Password 
+    
+        gcloud secrets versions access latest --secret="DB_PASSWORD"
+    
+    - DB Host
+    
+        gcloud secrets versions access latest --secret="DB_HOST"
+    
+    - GCP Bucket 
+    
+        gcloud secrets versions access latest --secret="GCP_BUCKET"
+    
+    - Cloudfunction URLs
+        Name: 
+          document-status:
+    
+            gcloud functions describe document-status --region=us-central1 --format="value(url)"
+    
+          image-processing:
+    
+            gcloud functions describe image-processing --region=us-central1 --format="value(url)"
+    
+          update_metadata_ingested_document:
+    
+            gcloud functions describe update_metadata_ingested_document --region=us-central1 --format="value(url)"
+    
+
+
+
+    mpdev install --deployer=gcr.io/aretecinc-public/disearch/deployer/deployer:1.0 --parameters='{
+      "Project ID": "world-learning-400909",
+      "cloudSqlDbConn": "cG9zdGdyZXNxbDovL3Bvc3RncmVzOkNLaEVKWkhbdUZTOyU9TWc4aXd1ZVZtJnhAMTAuNTAuMC4zL3Bvc3RncmVz",
+      "k8sApiServerUrl": "aHR0cHM6Ly8xMC4zLjAuMg==",
+      "allowedOrigin": "worldlearning.dataimagineers.ai",
+      "authEmail": "muhammadhassanb122@gmail.com",
+      "dbUser": "postgres",
+      "dbPassword": "CKhEJZH[uFS;%=Mg8iwueVm&x",
+      "dbHost": "10.50.0.3",
+      "gcpBucket": "disearch-storage-bucket-kda92b65",
+      "openaiApiKey": "",
+      "statusCloudFn": "https://us-central1-world-learning-400909.cloudfunctions.net/document-status",
+      "imageSummaryCloudFn": "https://us-central1-world-learning-400909.cloudfunctions.net/image-processing",
+      "updateMetadataFn": "https://us-central1-world-learning-400909.cloudfunctions.net/update_metadata_ingested_document"
+    }'
+
+
+    
+
+
 
 
