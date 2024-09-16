@@ -602,3 +602,100 @@ Exit the container and retry the mpdev doctor command on your host machine to se
     
     mpdev doctor    
 
+    And i have found that it is successfully recognized 
+
+I have connect the cluster with my local machine and rerun the **mpdev doctor** it is showing that CDR not is being install in your cluster
+
+    mpdev doctor
+    + KUBE_CONFIG=/home/hassan/.kube/config
+    + GCLOUD_CONFIG=/home/hassan/.config/gcloud
+    + EXTRA_DOCKER_PARAMS=
+    + DOCKER_NETWORK=host
+    + MARKETPLACE_TOOLS_TAG=latest
+    + MARKETPLACE_TOOLS_IMAGE=gcr.io/cloud-marketplace-tools/k8s/dev
+    ++ date +%Y%m%d-%H%M%S
+    + VERIFICATION_LOGS_PATH=/home/hassan/.mpdev_logs/20240916-204551
+    + kube_mount=
+    + [[ -f /home/hassan/.kube/config ]]
+    + kube_mount=(--mount "type=bind,source=${KUBE_CONFIG},target=/mount/config/.kube/config,readonly")
+    + gcloud_mount=
+    + gcloud_original_path=
+    + [[ -e /home/hassan/.config/gcloud ]]
+    + gcloud_mount=(--mount "type=bind,source=${GCLOUD_CONFIG},target=/mount/config/.config/gcloud,readonly")
+    ++ readlink -f /home/hassan/.config/gcloud
+    + canonical_gcloud_config=/home/hassan/.config/gcloud
+    + gcloud_original_path=(--env "GCLOUD_ORIGINAL_PATH=${canonical_gcloud_config}")
+    + terminal_docker_param=-t
+    + [[ -t 0 ]]
+    + terminal_docker_param=-it
+    + mkdir -p /home/hassan/.mpdev_logs/20240916-204551
+    + echo 'Logs stored in /home/hassan/.mpdev_logs/20240916-204551'
+    + tee /home/hassan/.mpdev_logs/20240916-204551/verify.log
+    Logs stored in /home/hassan/.mpdev_logs/20240916-204551
+    + docker run --init --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock,readonly --mount type=bind,source=/home/hassan/.mpdev_logs/20240916-204551,target=/logs --net=host --mount type=bind,source=/home/hassan/.kube/config,target=/mount/config/.kube/config,readonly --mount type=bind,source=/home/hassan/.config/gcloud,target=/mount/config/.config/gcloud,readonly --env GCLOUD_ORIGINAL_PATH=/home/hassan/.config/gcloud -it --rm gcr.io/cloud-marketplace-tools/k8s/dev:latest doctor
+    + tee /home/hassan/.mpdev_logs/20240916-204551/verify.log
+    
+    Your gcloud default project: world-learning-400909
+    
+    You can set an environment variables to record the GCR URL:
+    
+      export REGISTRY=gcr.io/$(gcloud config get-value project | tr ':' '/')
+    
+    ====
+    
+    Application CRD is not installed in your cluster.
+    
+    Run the following to install it:
+    
+    kubectl apply -f "https://raw.githubusercontent.com/GoogleCloudPlatform/marketplace-k8s-app-tools/master/crd/app-crd.yaml"
+    
+    For more details about the application CRD, see
+    https://github.com/kubernetes-sigs/application
+
+Solution:
+
+    kubectl apply -f "https://raw.githubusercontent.com/GoogleCloudPlatform/marketplace-k8s-app-tools/master/crd/app-crd.yaml"
+
+After the i rerun **mpdev doctor** again and it is showing that everything is good to go!!!
+
+    mpdev doctor
+    + KUBE_CONFIG=/home/hassan/.kube/config
+    + GCLOUD_CONFIG=/home/hassan/.config/gcloud
+    + EXTRA_DOCKER_PARAMS=
+    + DOCKER_NETWORK=host
+    + MARKETPLACE_TOOLS_TAG=latest
+    + MARKETPLACE_TOOLS_IMAGE=gcr.io/cloud-marketplace-tools/k8s/dev
+    ++ date +%Y%m%d-%H%M%S
+    + VERIFICATION_LOGS_PATH=/home/hassan/.mpdev_logs/20240916-204647
+    + kube_mount=
+    + [[ -f /home/hassan/.kube/config ]]
+    + kube_mount=(--mount "type=bind,source=${KUBE_CONFIG},target=/mount/config/.kube/config,readonly")
+    + gcloud_mount=
+    + gcloud_original_path=
+    + [[ -e /home/hassan/.config/gcloud ]]
+    + gcloud_mount=(--mount "type=bind,source=${GCLOUD_CONFIG},target=/mount/config/.config/gcloud,readonly")
+    ++ readlink -f /home/hassan/.config/gcloud
+    + canonical_gcloud_config=/home/hassan/.config/gcloud
+    + gcloud_original_path=(--env "GCLOUD_ORIGINAL_PATH=${canonical_gcloud_config}")
+    + terminal_docker_param=-t
+    + [[ -t 0 ]]
+    + terminal_docker_param=-it
+    + mkdir -p /home/hassan/.mpdev_logs/20240916-204647
+    + echo 'Logs stored in /home/hassan/.mpdev_logs/20240916-204647'
+    + tee /home/hassan/.mpdev_logs/20240916-204647/verify.log
+    Logs stored in /home/hassan/.mpdev_logs/20240916-204647
+    + docker run --init --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock,readonly --mount type=bind,source=/home/hassan/.mpdev_logs/20240916-204647,target=/logs --net=host --mount type=bind,source=/home/hassan/.kube/config,target=/mount/config/.kube/config,readonly --mount type=bind,source=/home/hassan/.config/gcloud,target=/mount/config/.config/gcloud,readonly --env GCLOUD_ORIGINAL_PATH=/home/hassan/.config/gcloud -it --rm gcr.io/cloud-marketplace-tools/k8s/dev:latest doctor
+    + tee /home/hassan/.mpdev_logs/20240916-204647/verify.log
+    
+    Your gcloud default project: world-learning-400909
+    
+    You can set an environment variables to record the GCR URL:
+    
+      export REGISTRY=gcr.io/$(gcloud config get-value project | tr ':' '/')
+    
+    ====
+    
+    Everything looks good to go!!
+
+
+
