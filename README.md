@@ -468,6 +468,10 @@ Smoke Test/Verify an Application:
 
 Create the Executable:
 
+    create bin directory in home directory first
+
+    mkdir -p $HOME/bin
+    
     BIN_FILE="$HOME/bin/mpdev"
     docker run gcr.io/cloud-marketplace-tools/k8s/dev cat /scripts/dev > "$BIN_FILE"
     chmod +x "$BIN_FILE"
