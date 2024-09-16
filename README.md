@@ -441,3 +441,40 @@ Remember to add this CNAME record in cloud DNS
     Dockerfile:
     In this file, we are copying both the schema.yaml file and the chart/ folder.
 
+## Test Deployer image locally with mpdev tool
+
+    The dev container **gcr.io/cloud-marketplace-tools/k8s/dev** includes all necessary libraries for development. When run, it forwards the gcloud and kubeconfig settings from the host, enabling commands like gcloud and kubectl to be executed within the container.
+
+    You can create an executable tool called mpdev using the dev container to run commands for diagnosing the environment, installing applications, verifying deployments, and deleting applications. It works by running a container, extracting a script, and setting up commands locally.
+    
+Key mpdev Commands:
+
+Diagnose Environment:
+    
+    mpdev doctor
+    
+Install an Application:
+    
+    mpdev install --deployer=<YOUR DEPLOYER IMAGE> --parameters=<PARAMETERS>
+  
+Delete an Application:
+    
+    kubectl delete application <APPLICATION DEPLOYMENT NAME>
+
+Smoke Test/Verify an Application:
+
+    mpdev verify --deployer=<YOUR DEPLOYER IMAGE>
+    How You Can Use mpdev
+
+Create the Executable:
+
+    BIN_FILE="$HOME/bin/mpdev"
+    docker run gcr.io/cloud-marketplace-tools/k8s/dev cat /scripts/dev > "$BIN_FILE"
+    chmod +x "$BIN_FILE"
+
+Run the mpdev Commands: After setting up mpdev, you can run any of the available commands. For example, to install an application:
+    
+    mpdev install --deployer=gcr.io/your-company/deployer --parameters='{"name": "deployment", "namespace": "ns"}'
+
+    This tool is highly useful for managing applications on Google Cloud Marketplace and automating deployment processes.
+    
