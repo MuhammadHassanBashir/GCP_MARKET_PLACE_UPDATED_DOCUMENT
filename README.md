@@ -511,3 +511,94 @@ Now, try running the mpdev command again:
     mpdev
    
 This should resolve the issue! Let me know if it works or if you encounter any further problems.
+
+## Use use mpdev doctor
+
+    The mpdev doctor command has verified your environment and provided a message about your Google Cloud project
+
+it my case it has shown this below and do the nessecary this to make it resolve..
+
+    mpdev doctor
+    + KUBE_CONFIG=/home/hassan/.kube/config
+    + GCLOUD_CONFIG=/home/hassan/.config/gcloud
+    + EXTRA_DOCKER_PARAMS=
+    + DOCKER_NETWORK=host
+    + MARKETPLACE_TOOLS_TAG=latest
+    + MARKETPLACE_TOOLS_IMAGE=gcr.io/cloud-marketplace-tools/k8s/dev
+    ++ date +%Y%m%d-%H%M%S
+    + VERIFICATION_LOGS_PATH=/home/hassan/.mpdev_logs/20240916-201334
+    + kube_mount=
+    + [[ -f /home/hassan/.kube/config ]]
+    + kube_mount=(--mount "type=bind,source=${KUBE_CONFIG},target=/mount/config/.kube/config,readonly")
+    + gcloud_mount=
+    + gcloud_original_path=
+    + [[ -e /home/hassan/.config/gcloud ]]
+    + gcloud_mount=(--mount "type=bind,source=${GCLOUD_CONFIG},target=/mount/config/.config/gcloud,readonly")
+    ++ readlink -f /home/hassan/.config/gcloud
+    + canonical_gcloud_config=/home/hassan/.config/gcloud
+    + gcloud_original_path=(--env "GCLOUD_ORIGINAL_PATH=${canonical_gcloud_config}")
+    + terminal_docker_param=-t
+    + [[ -t 0 ]]
+    + terminal_docker_param=-it
+    + mkdir -p /home/hassan/.mpdev_logs/20240916-201334
+    + echo 'Logs stored in /home/hassan/.mpdev_logs/20240916-201334'
+    + tee /home/hassan/.mpdev_logs/20240916-201334/verify.log
+    Logs stored in /home/hassan/.mpdev_logs/20240916-201334
+    + tee /home/hassan/.mpdev_logs/20240916-201334/verify.log
+    + docker run --init --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock,readonly --mount type=bind,source=/home/hassan/.mpdev_logs/20240916-201334,target=/logs --net=host --mount type=bind,source=/home/hassan/.kube/config,target=/mount/config/.kube/config,readonly --mount type=bind,source=/home/hassan/.config/gcloud,target=/mount/config/.config/gcloud,readonly --env GCLOUD_ORIGINAL_PATH=/home/hassan/.config/gcloud -it --rm gcr.io/cloud-marketplace-tools/k8s/dev:latest doctor
+    
+    Your gcloud default project: world-learning-400909
+    
+    You can set an environment variables to record the GCR URL:
+    
+      export REGISTRY=gcr.io/$(gcloud config get-value project | tr ':' '/')
+    
+    ====
+    
+    kubectl is not installed.
+    
+    See https://kubernetes.io/docs/tasks/tools/install-kubectl/#download-as-part-of-the-google-cloud-sdk
+    
+    ====
+
+it gave me the information that kubectl is not install. but i have already install it in my system.. I made below changes for resolving this error..
+
+    It looks like the mpdev doctor command is not recognizing kubectl even though it is installed on your host machine. This issue is likely due to the Docker container not having access to the /snap/bin directory where kubectl is installed.
+    
+    Here’s a step-by-step approach to ensure that the mpdev tool can test the GCP Marketplace image:
+    
+    1. Verify kubectl Installation
+    Ensure kubectl is correctly installed on your system:
+    
+    which kubectl
+
+    You should see /snap/bin/kubectl or the path where kubectl is installed.
+    
+    2. Update Docker Path
+    
+    Since kubectl is installed in /snap/bin, and Docker containers do not typically have access to this directory, you can try creating a symbolic link to a more accessible path or copying kubectl to a directory that the Docker container can access.
+    
+    Option 1: Create a Symbolic Link
+ 
+    sudo ln -s /snap/bin/kubectl /usr/local/bin/kubectl
+    
+    Option 2: Copy kubectl to a Common Directory
+     
+    sudo cp /snap/bin/kubectl /usr/local/bin/
+   
+     3. Test kubectl Inside Docker
+    Run a Docker container and check if kubectl is accessible:
+
+    docker run -it --rm gcr.io/cloud-marketplace-tools/k8s/dev:latest /bin/bash
+    
+    Once inside the container:
+
+    which kubectl
+
+    now you will find kubectl inside the container.. connect the cluster and test kubectl for getting cluster info. 
+
+    **Run mpdev doctor Again
+Exit the container and retry the mpdev doctor command on your host machine to see if it recognizes kubectl now:**
+    
+    mpdev doctor    
+
