@@ -7,249 +7,297 @@ x-google-marketplace:
       Version 1.0.8:
       - disearch deployment with deployer image
   images:
-    disearchImage:
+    '':  # Primary image has no name.
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/disearch"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/disearch
         imageTag:
-          type: "1.0.8"
-    etcdImage:
+          type: TAG
+          default: "1.0.8"
+    
+    etcdImage: 
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/cache/etcd"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/cache/etcd
         imageTag:
-          type: "3.5.14-debian-12-r1"
-    kedaImage:
+          type: TAG
+          default: "3.5.14-debian-12-r1"
+    
+    kedaImage: 
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/cache/keda"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/cache/keda
         imageTag:
-          type: "1.0.8"
-    kedaAdmissionWebhooksImage:
+          type: TAG
+          default: "1.0.8"
+    
+    kedaAdmissionWebhooksImage:  
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/cache/keda-admission-webhooks"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/cache/keda-admission-webhooks
         imageTag:
-          type: "1.0.8"
-    kedaMetricsApiserverImage:
+          type: TAG
+          default: "1.0.8"
+    
+    kedaMetricsApiserverImage:  
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/cache/keda-metrics-apiserver"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/cache/keda-metrics-apiserver
         imageTag:
-          type: "1.0.8"
+          type: TAG
+          default: "1.0.8"
+    
     redisImage:
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/cache/redis"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/cache/redis
         imageTag:
-          type: "7.2.5-debian-12-r2"
-    documentChatImage:
+          type: TAG
+          default: "7.2.5-debian-12-r2"
+    
+    documentChatImage: 
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/document-chat"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/document-chat
         imageTag:
-          type: "1.0.8"
-    loadbalancerImage:
+          type: TAG
+          default: "1.0.8"
+    
+    loadbalancerImage:  
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/loadbalancer"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/loadbalancer
         imageTag:
-          type: "1.0.8"
-    pdfConverterImage:
+          type: TAG
+          default: "1.0.8"
+    
+    pdfConverterImage:  
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/pdf-converter"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/pdf-converter
         imageTag:
-          type: "1.0.8"
+          type: TAG
+          default: "1.0.8"
+    
     vertexaiCitationsImage:
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/vertexai-citations"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/vertexai-citations
         imageTag:
-          type: "1.0.8"
+          type: TAG
+          default: "1.0.8"
+    
     vertexaiInitImage:
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/vertexai-init"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/vertexai-init
         imageTag:
-          type: "1.0.8"
+          type: TAG
+          default: "1.0.8"
+    
     vertexaiSummaryImage:
       properties:
-        imageRepo:
-          type: "gcr.io/aretecinc-public/disearch/vertexai-summary"
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/vertexai-summary
         imageTag:
-          type: "1.0.8"
+          type: TAG
+          default: "1.0.8"
 
 properties:
   name:
     type: string
     description: The name of the application deployment.
+    default: disearch
     x-google-marketplace:
       type: NAME
-      default: disearch
-    
+      
   namespace:
     type: string
     description: The Kubernetes namespace for deploying the application.
+    default: default
     x-google-marketplace:
       type: NAMESPACE
-      default: default
-    
-  projectID:
-  type: string
-  title: Project ID
-  description: The GCP project ID where the resources will be deployed.
-  x-google-marketplace:
-    type: STRING
-    required: true
-    mapping: "projectID"  
+  
+  disearch.allowedOrigin:
+    type: string
+    default: worldlearning.dataimagineers.ai
+    title: Website URL
+    description: The allowed origin URL for the application
+    x-google-marketplace:
+      type: STRING
+      required: true
 
+  disearch.authEmail:
+    type: string
+    title: Email Address
+    default: muhammadhassanb122@gmail.com
+    description: Email address provided by the user
+    x-google-marketplace:
+      type: STRING
+      required: true
+
+  disearch.dbUser:
+    type: string
+    title: DB User
+    default: postgres
+    description: DB User provided by the user
+    x-google-marketplace:
+      type: STRING
+      required: true
+
+  disearch.dbPassword:
+    type: string
+    title: DB Password
+    description: DB Password provided by the user
+    x-google-marketplace:
+      type: STRING
+      required: true
+
+  disearch.dbHost:
+    type: string
+    title: DB Host
+    description: DB Host provided by the user
+    x-google-marketplace:
+      type: STRING
+      required: true
+
+  disearch.gcpBucket:
+    type: string
+    title: GCP Bucket Name
+    description: GCP Bucket Name provided by the user
+    x-google-marketplace:
+      type: STRING
+      required: true
+  
+ # disearch.tag:
+ #   type: string
+ #   title: IMAGE TAG
+ #   default: "1.0.8"
+ #   description: IMAGE TAG
+ #   x-google-marketplace:
+ #     type: STRING
+ #     required: true
+
+
+  projectID:
+    type: string
+    title: Project ID
+    default: world-learning-400909
+    description: The GCP project ID where the resources will be deployed.
+    x-google-marketplace:
+      type: STRING
+      required: true
+  
+#  tag:
+#    type: string
+#    title: IMAGE TAG
+#    default: "1.0.8"
+#    description: IMAGE TAG.
+#    x-google-marketplace:
+#      type: STRING
+#      required: true
 
   replicaCount:
     type: integer
-    description: Number of replicas for the service
+    title: Replica Count
+    description: Number of replicas for the service.
+    default: 1
+    #x-google-marketplace:
+      #type: STRING
+      #default: "1"
+
+  pdfConvert.cloudSqlDbConn:
+    type: string
+    title: Cloud SQL Database Connection (Base64 Encoded)
+    description: Cloud SQL DB connection string, provided by the user, **must be base64-encoded**.
     x-google-marketplace:
-      type: INTEGER
-      default: 1
-      mapping: "replicaCount"
+      type: STRING
+      required: true
       
-       
-  pdfConvert:
-  type: object
-  properties:
-    cloudSqlDbConn:
-      type: string
-      title: Cloud SQL Database Connection (Base64 Encoded)
-      description: Cloud SQL DB connection string, provided by the user, **must be base64-encoded**.
-      x-google-marketplace:
-        type: STRING
-        required: true
-        example: "cG9zdGdyZXNxbDovL3VzZXI6cGFzc3dvcmRAaG9zdDpwb3J0L2RhdGFiYXNl"
-        mapping: "pdfConvert.cloudSqlDbConn"
+
+  loadbalancer.k8sApiServerUrl:
+    type: string
+    title: Kubernetes API server URL (Base64 Encoded)
+    description: Kubernetes API server URL provided by the user, **must be base64-encoded**.
+    x-google-marketplace:
+      type: STRING
+      required: true
   
-  loadbalancer:
-    type: object
-    properties:
-      k8sApiServerUrl:
-        type: string
-        title: Kubernetes API server URL (Base64 Encoded)
-        description: Kubernetes API server URL provided by the user, **must be base64-encoded**.
-        x-google-marketplace:
-          type: STRING
-          required: true
-          example: "cG9zdGdyZXNxbDovL3VzZXI6cGFzc3dvcmRAaG9zdDpwb3J0L2RhdGFiYXNl"
-          mapping: "loadbalancer.k8sApiServerUrl"
-  
-  disearch:
-    type: object
-    properties:
-      allowedOrigin:
-        type: string
-        title: Website URL
-        description: Website URL provided by the user
-        x-google-marketplace:
-          type: STRING
-          required: true
-          mapping: "disearch.allowedOrigin"
-      authEmail:
-        type: string
-        title: Email Address
-        description: Email address provided by the user
-        x-google-marketplace:
-          type: STRING
-          required: true
-          mapping: "disearch.authEmail"
-      dbUser:
-        type: string
-        title: DB User
-        description: DB User provided by the user
-        x-google-marketplace:
-          type: STRING
-          required: true
-          mapping: "disearch.dbUser"
-      dbPassword:
-        type: string
-        title: DB Password
-        description: DB Password provided by the user
-        x-google-marketplace:
-          type: STRING
-          required: true
-          mapping: "disearch.dbPassword"
-      dbHost:
-        type: string
-        title: DB Host
-        description: DB Host provided by the user
-        x-google-marketplace:
-          type: STRING
-          required: true
-          mapping: "disearch.dbHost"
-      gcpBucket:
-        type: string
-        title: GCP Bucket Name
-        description: GCP Bucket Name provided by the user
-        x-google-marketplace:
-          type: STRING
-          required: true
-          mapping: "disearch.gcpBucket"
+  vertexai.openaiApiKey:
+    type: string
+    description: OpenAI API Key
+    x-google-marketplace:
+      type: STRING
+      required: true
       
+  vertexai.statusCloudFn:
+    type: string
+    title: Cloud Function URL for Document Status
+    description: Cloud Function URL for Document Status provided by the user.
+    x-google-marketplace:
+      type: STRING
+      required: true
+          
+  vertexai.imageSummaryCloudFn:
+    type: string
+    title: Cloud Function URL for Image Summary
+    description: Cloud Function URL for Image Summary provided by the user.
+    x-google-marketplace:
+      type: STRING
+      required: true
+          
+  vertexai.updateMetadataFn:
+    type: string
+    title: Cloud Function URL for Update Metadata
+    description: Cloud Function URL for Update Metadata provided by the user.
+    x-google-marketplace:
+      type: STRING
+      required: true
+    
+  schema:
+    type: string
+    default: "disearch_search"
+    description: Schema Info
+    x-google-marketplace:
+      type: STRING
       
-  vertexai:
-    type: object
-    properties:
-      openaiApiKey:
-        type: string
-        description: OpenAI API Key
-      statusCloudFn:
-        type: string
-        title: Cloud Function URL for Document Status
-        description: Cloud Function URL for Document Status provided by the user.
-        x-google-marketplace:
-          type: STRING
-          required: true
-          example: "https://us-central1-world-learning-400909.cloudfunctions.net/document-status"
-          mapping: "vertexai.statusCloudFn"
-      imageSummaryCloudFn:
-        type: string
-        title: Cloud Function URL for Image Summary
-        description: Cloud Function URL for  Image Summary provided by the user.
-        x-google-marketplace:
-          type: STRING
-          required: true
-          example: "https://us-central1-world-learning-400909.cloudfunctions.net/image-summary"
-          mapping: "vertexai.imageSummaryCloudFn"
-      updateMetadataFn:
-        type: string
-        title: Cloud Function URL for Update Metadata
-        description: Cloud Function URL for Update Metadata provided by the user.
-        x-google-marketplace:
-          type: STRING
-          required: true
-          example: "https://us-central1-world-learning-400909.cloudfunctions.net/update-metadata"
-          mapping: "vertexai.updateMetadataFn"
-      schema:
-        type: string
-        description: Schema Info
-        x-google-marketplace:
-          type: string
-          default: "disearch_search"
-          mapping: "vertexai.schema"
 
   serviceAccountName:
     type: string
+    default: "gke-sa" 
     description: GKE Service Account Name 
     x-google-marketplace:
-      type: string
-      default: "gke-sa"
-      mapping: "serviceAccountName"
-
+      type: STRING
+         
 
 required:
   - name
   - namespace
-  - projectID
-  - pdfConvert
-  - loadbalancer
-  - disearch
-  - vertexai
-  - serviceAccountName
-  
+  - disearch.allowedOrigin
+  - disearch.authEmail
+  - disearch.dbUser
+  - disearch.dbPassword
+  - disearch.dbHost
+  - disearch.gcpBucket
+
+#required:
+#  - name
+#  - namespace
+#  - projectID
+#  - pdfConvert
+#  - loadbalancer
+#  - disearch
+#  - vertexai
+#  - serviceAccountName
