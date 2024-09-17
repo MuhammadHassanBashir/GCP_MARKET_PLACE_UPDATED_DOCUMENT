@@ -761,23 +761,24 @@ After the i rerun **mpdev doctor** again and it is showing that everything is go
             gcloud functions describe update_metadata_ingested_document --region=us-central1 --format="value(url)"
     
 
-
-
+    
     mpdev install --deployer=gcr.io/aretecinc-public/disearch/deployer/deployer:1.0 --parameters='{
-      "Project ID": "world-learning-400909",
-      "cloudSqlDbConn": "cG9zdGdyZXNxbDovL3Bvc3RncmVzOkNLaEVKWkhbdUZTOyU9TWc4aXd1ZVZtJnhAMTAuNTAuMC4zL3Bvc3RncmVz",
-      "k8sApiServerUrl": "aHR0cHM6Ly8xMC4zLjAuMg==",
-      "allowedOrigin": "worldlearning.dataimagineers.ai",
-      "authEmail": "muhammadhassanb122@gmail.com",
-      "dbUser": "postgres",
-      "dbPassword": "CKhEJZH[uFS;%=Mg8iwueVm&x",
-      "dbHost": "10.50.0.3",
-      "gcpBucket": "disearch-storage-bucket-kda92b65",
-      "openaiApiKey": "",
-      "statusCloudFn": "https://us-central1-world-learning-400909.cloudfunctions.net/document-status",
-      "imageSummaryCloudFn": "https://us-central1-world-learning-400909.cloudfunctions.net/image-processing",
-      "updateMetadataFn": "https://us-central1-world-learning-400909.cloudfunctions.net/update_metadata_ingested_document"
-    }'
+      "name": "disearch",
+      "namespace": "default",  
+      "projectID": "world-learning-400909",
+      "pdfConvert.cloudSqlDbConn": "cG9zdGdyZXNxbDovL3Bvc3RncmVzOkNLaEVKWkhbdUZTOyU9TWc4aXd1ZVZtJnhAMTAuNTAuMC4zL3Bvc3RncmVz",
+      "loadbalancer.k8sApiServerUrl": "aHR0cHM6Ly8xMC4zLjAuMg==",
+      "disearch.allowedOrigin": "worldlearning.dataimagineers.ai",
+      "disearch.authEmail": "muhammadhassanb122@gmail.com",
+      "disearch.dbUser": "postgres",
+      "disearch.dbPassword": "CKhEJZH[uFS;%=Mg8iwueVm&x",
+      "disearch.dbHost": "10.50.0.3",
+      "disearch.gcpBucket": "disearch-storage-bucket-kda92b65",
+      "vertexai.openaiApiKey": "",
+      "vertexai.statusCloudFn": "https://us-central1-world-learning-400909.cloudfunctions.net/document-status",
+      "vertexai.imageSummaryCloudFn": "https://us-central1-world-learning-400909.cloudfunctions.net/image-processing",
+      "vertexai.updateMetadataFn": "https://us-central1-world-learning-400909.cloudfunctions.net/update_metadata_ingested_document"
+    }'    
 
 
     
