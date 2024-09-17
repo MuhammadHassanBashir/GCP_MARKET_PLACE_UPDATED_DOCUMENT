@@ -780,7 +780,12 @@ After the i rerun **mpdev doctor** again and it is showing that everything is go
       "vertexai.updateMetadataFn": "https://us-central1-world-learning-400909.cloudfunctions.net/update_metadata_ingested_document"
     }'    
 
+##Commands for checking helm identations and other issues..
 
+    The helm lint command checks your Helm chart for common issues and provides feedback on potential problems. 
+
+    helm lint <chart-name>
+    
     
 
 
