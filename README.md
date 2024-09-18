@@ -785,9 +785,42 @@ After the i rerun **mpdev doctor** again and it is showing that everything is go
     The helm lint command checks your Helm chart for common issues and provides feedback on potential problems. 
 
     helm lint <chart-name>
-    
-    
 
+## Commands for seeing the final template
 
+    helm template disearch ./disearch --values ./disearch/values.yaml --debug > rendered-output.yaml    
+    
+    debug flag will debug the issue
+
+## I was facing YAML to json parsing issue in disearch-configmap
+
+    I resolve this by using **quote** with values.yaml. Like shown below.
+
+    ---
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: disearch-configmap
+      namespace: default
+    data:
+      DB_USER: {{ .Values.disearch.dbUser | quote }}
+      ALLOWED_ORIGIN: {{ .Values.disearch.allowedOrigin | quote }}
+      AUTH_EMAIL: {{ .Values.disearch.authEmail | quote }}
+      schema: {{ .Values.disearch.schema | quote }}
+      appName: {{ .Values.disearch.appName | quote }}
+      IS_PENSDOWN: {{ .Values.disearch.IS_PENSDOWN | quote }}
+      IS_CONTEXT: {{ .Values.disearch.IS_CONTEXT | quote }}
+      GCP_BUCKET: {{ .Values.disearch.gcpBucket | quote }}
+      DB_HOST: {{ .Values.disearch.dbHost | quote }}
+      DB_PASSWORD: {{ .Values.disearch.dbPassword | quote }}
+      DOCUMENT_CHAT_URL: {{ .Values.disearch.DOCUMENT_CHAT_URL | quote }}
+      LOG_INDEX: {{ .Values.disearch.projectID | quote }}
+      project_id: {{ .Values.disearch.projectID | quote }}
+      vertex_ai_search_summary_url: {{ .Values.disearch.vertex_ai_search_summary_url | quote }}
+      vertex_ai_followup_url: {{ .Values.disearch.vertex_ai_followup_url | quote }}
+      IS_VERTEX_AI: {{ .Values.disearch.IS_VERTEX_AI | quote }}
+      vertex_ai_search_base_url: {{ .Values.disearch.vertex_ai_search_base_url | quote }}
+      vertex_ai_init_base_url: {{ .Values.disearch.vertex_ai_init_base_url | quote }}
+      APP_VERSION: {{ .Values.disearch.APP_VERSION | quote }}
 
 
