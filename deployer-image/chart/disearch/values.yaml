@@ -1,11 +1,11 @@
 disearch:
   projectID: "world-learning-400909"
   containerPort: 5000
-  allowedOrigin: "REPLACE_WITH_WEBSITE_URL" 
-  authEmail: "REPLACE_WITH_USER_EMAIL_ADDRESS" 
-  dbUser: "REPLACE_WITH_DB_USER" 
-  dbPassword: "REPLACE_WITH_DB_PASSWORD" 
-  gcpBucket: "REPLACE_WITH_GCP_BUCKET" 
+  allowedOrigin: "REPLACE_WITH_WEBSITE_URL"
+  authEmail: "REPLACE_WITH_USER_EMAIL_ADDRESS"
+  dbUser: "REPLACE_WITH_DB_USER"
+  dbPassword: "REPLACE_WITH_DB_PASSWORD"
+  gcpBucket: "REPLACE_WITH_GCP_BUCKET"
   dbHost: "REPLACE_WITH_DB_HOST"
   schema: "disearch"
   appName: "disearch"
