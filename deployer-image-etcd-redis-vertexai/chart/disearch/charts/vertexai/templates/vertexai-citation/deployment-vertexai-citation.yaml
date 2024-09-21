@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vertexai-citation-deployment
+  namespace: {{ .Values.namespace | default "default" }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: vertexai-citation
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: vertexai-citation
+    spec:
+      serviceAccountName: {{ .Values.serviceAccountName }}
+      containers:
+      - name: vertexai-citation
+        image: gcr.io/{{ .Values.pullImagefrom }}/disearch/vertexai-citations:1.0.17
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.vertexaiCitation.containerPort }}
+

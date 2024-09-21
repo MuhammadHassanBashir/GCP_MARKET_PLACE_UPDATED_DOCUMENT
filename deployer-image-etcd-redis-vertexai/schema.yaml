@@ -1,0 +1,287 @@
+x-google-marketplace:
+  schemaVersion: v2
+  applicationApiVersion: v1beta1
+  publishedVersion: '1.0.8'
+  publishedVersionMetadata:
+    releaseNote: >-
+      Version 1.0.8:
+      - disearch deployment with deployer image
+  images:
+    '':
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/disearch
+        imageTag:
+          type: TAG
+          default: "1.0.8"
+    
+    etcdImage: 
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/cache/etcd
+        imageTag:
+          type: TAG
+          default: "3.5.14-debian-12-r1"
+    
+    kedaImage: 
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/cache/keda
+        imageTag:
+          type: TAG
+          default: "1.0.8"
+    
+    kedaAdmissionWebhooksImage:  
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/cache/keda-admission-webhooks
+        imageTag:
+          type: TAG
+          default: "1.0.8"
+    
+    kedaMetricsApiserverImage:  
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/cache/keda-metrics-apiserver
+        imageTag:
+          type: TAG
+          default: "1.0.8"
+    
+    redisImage:
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/cache/redis
+        imageTag:
+          type: TAG
+          default: "7.2.5-debian-12-r2"
+    
+    documentChatImage: 
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/document-chat
+        imageTag:
+          type: TAG
+          default: "1.0.8"
+    
+    loadbalancerImage:  
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/loadbalancer
+        imageTag:
+          type: TAG
+          default: "1.0.8"
+    
+    pdfConverterImage:  
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/pdf-converter
+        imageTag:
+          type: TAG
+          default: "1.0.8"
+    
+    vertexaiCitationsImage:
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/vertexai-citations
+        imageTag:
+          type: TAG
+          default: "1.0.8"
+    
+    vertexaiInitImage:
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/vertexai-init
+        imageTag:
+          type: TAG
+          default: "1.0.8"
+    
+    vertexaiSummaryImage:
+      properties:
+        imageRepo: 
+          type: REPO_WITH_REGISTRY
+          default: gcr.io/aretecinc-public/disearch/vertexai-summary
+        imageTag:
+          type: TAG
+          default: "1.0.8"
+
+properties:
+  name:
+    type: string
+    description: The name of the application deployment.
+    default: disearch
+    x-google-marketplace:
+      type: NAME
+      
+  namespace:
+    type: string
+    description: The Kubernetes namespace for deploying the application.
+    default: default
+    x-google-marketplace:
+      type: NAMESPACE
+    
+  
+  allowedOrigin:
+    type: string
+    default: worldlearning.dataimagineers.ai
+    title: Website URL
+    description: The allowed origin URL for the application
+    x-google-marketplace:
+      type: STRING
+      required: true
+
+  authEmail:
+    type: string
+    title: Email Address
+    default: muhammadhassanb122@gmail.com
+    description: Email address provided by the user
+    x-google-marketplace:
+      type: STRING
+      required: true
+
+  dbUser:
+    type: string
+    title: DB User
+    default: postgres
+    description: DB User provided by the user
+    x-google-marketplace:
+      type: STRING
+      required: true
+
+  dbPassword:
+    type: string
+    title: DB Password
+    default: CKhEJZH[uFS;%=Mg8iwueVm&x
+    description: DB Password provided by the user
+    x-google-marketplace:
+      type: STRING
+      required: true
+
+  dbHost:
+    type: string
+    title: DB Host
+    default: 10.50.0.3
+    description: DB Host provided by the user
+    x-google-marketplace:
+      type: STRING
+      required: true
+
+  gcpBucket:
+    type: string
+    title: GCP Bucket Name
+    default: disearch-storage-bucket-kda92b65
+    description: GCP Bucket Name provided by the user
+    x-google-marketplace:
+      type: STRING
+      required: true
+
+
+  projectID:
+    type: string
+    title: Project ID
+    default: world-learning-400909
+    description: The GCP project ID where the resources will be deployed.
+    x-google-marketplace:
+      type: STRING
+      required: true
+  
+  replicaCount:
+    type: integer
+    title: Replica Count
+    description: Number of replicas for the service.
+    default: 1
+
+  pdfConvert.cloudSqlDbConn:
+    type: string
+    title: Cloud SQL Database Connection (Base64 Encoded)
+    default: cG9zdGdyZXNxbDovL3Bvc3RncmVzOkNLaEVKWkhbdUZTOyU9TWc4aXd1ZVZtJnhAMTAuNTAuMC4zL3Bvc3RncmVz
+    description: Cloud SQL DB connection string, provided by the user, **must be base64-encoded**.
+    x-google-marketplace:
+      type: STRING
+      required: true
+      
+
+  loadbalancer.k8sApiServerUrl:
+    type: string
+    title: Kubernetes API server URL (Base64 Encoded)
+    default: aHR0cHM6Ly8xMC4xMjguMTUuMjA3
+    description: Kubernetes API server URL provided by the user, **must be base64-encoded**.
+    x-google-marketplace:
+      type: STRING
+      required: true
+  
+  vertexai.openaiApiKey:
+    type: string
+    description: OpenAI API Key
+    x-google-marketplace:
+      type: STRING
+      required: true
+      
+  vertexai.statusCloudFn:
+    type: string
+    title: Cloud Function URL for Document Status
+    default: https://us-central1-world-learning-400909.cloudfunctions.net/document-status
+    description: Cloud Function URL for Document Status provided by the user.
+    x-google-marketplace:
+      type: STRING
+      required: true
+          
+  vertexai.imageSummaryCloudFn:
+    type: string
+    title: Cloud Function URL for Image Summary
+    default: https://us-central1-world-learning-400909.cloudfunctions.net/image-processing
+    description: Cloud Function URL for Image Summary provided by the user.
+    x-google-marketplace:
+      type: STRING
+      required: true
+          
+  vertexai.updateMetadataFn:
+    type: string
+    title: Cloud Function URL for Update Metadata
+    default: https://us-central1-world-learning-400909.cloudfunctions.net/update_metadata_ingested_document
+    description: Cloud Function URL for Update Metadata provided by the user.
+    x-google-marketplace:
+      type: STRING
+      required: true
+    
+  schema:
+    type: string
+    default: "disearch_search"
+    description: Schema Info
+    x-google-marketplace:
+      type: STRING
+      
+
+  serviceAccountName:
+    type: string
+    default: gke-sa 
+    description: GKE Service Account Name 
+    x-google-marketplace:
+      type: STRING
+
+
+         
+
+required:
+  - name
+  - namespace
+#  - keda.namespace
+#  - allowedOrigin
+#  - authEmail
+#  - dbUser
+#  - dbPassword
+#  - dbHost
+#  - gcpBucket
+
+
+

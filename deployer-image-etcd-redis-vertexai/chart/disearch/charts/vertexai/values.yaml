@@ -1,0 +1,43 @@
+replicaCount: 1
+pullImagefrom: "aretecinc-public" 
+projectID: "world-learning-400909"  
+#tag: 1.0.8
+namespace: "default"
+
+pdfConvert:
+  containerPort: 5000
+  # postgresql://postgres:password@10.127.0.7/postgres
+  #cloudSqlDbConn: "REPLACE_SQL_DB_CONNECTION"
+  cloudSqlDbConn: "cG9zdGdyZXNxbDovL3Bvc3RncmVzOkNLaEVKWkhbdUZTOyU9TWc4aXd1ZVZtJnhAMTAuNTAuMC4zL3Bvc3RncmVz"
+
+loadbalancer:
+  containerPort: 8080
+  #https://IP_ADDRESS
+  #k8sApiServerUrl: "REPLACE_WITH_KUBEAPI_SERVER_URL"
+  k8sApiServerUrl: "aHR0cHM6Ly8xMC4xMjguMTUuMjA3"
+  #etcd.default.svc.cluster.local:2379
+  etcdHost: "ZXRjZC5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsOjIzNzk="
+  etcdPassword: "RXRjZDEyMyQlXi4uLg=="
+   
+docChat:
+  containerPort: 5000
+
+vertexAiFollowup:
+  containerPort: 8000
+
+vertexaiCitation:
+  containerPort: 8000
+
+vertexai:
+  containerPort: 5000
+  openaiApiKey: ""
+  statusCloudFn: "REPLACE_WITH_DOCUMENT_STATUS_CF_URL"
+  imageSummaryCloudFn: "REPLACE_WITH_IMAGE_PROCESSING_CF_URL"
+  updateMetadataFn: "REPLACE_WITH_UPDATE_METADATA_INJECTED_DOCUMENT"
+  schema: "disearch_search"
+
+vertexaiSummary:
+  containerPort: 8000
+
+serviceAccountName: "gke-sa"
+

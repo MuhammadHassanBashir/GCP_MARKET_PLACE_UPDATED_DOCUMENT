@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vertexai-summary-service
+  namespace: {{ .Values.namespace | default "keda" }}
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+spec:
+  selector:
+    app: vertexai-summary
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: {{ .Values.vertexaiSummary.containerPort }}
+  type: LoadBalancer
+

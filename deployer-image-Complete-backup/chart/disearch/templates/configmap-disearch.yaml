@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: disearch-configmap
+  namespace: {{ .Values.namespace | default "keda" }}
+data:
+  DB_USER: {{ .Values.dbUser | quote }}
+  ALLOWED_ORIGIN: {{ .Values.allowedOrigin | quote }}
+  AUTH_EMAIL: {{ .Values.authEmail | quote }}
+  schema: {{ .Values.schema | quote }}
+  appName: {{ .Values.appName | quote }}
+  IS_PENSDOWN: {{ .Values.IS_PENSDOWN | quote }}
+  IS_CONTEXT: {{ .Values.IS_CONTEXT | quote }}
+  GCP_BUCKET: {{ .Values.gcpBucket | quote }}
+  DB_HOST: {{ .Values.dbHost | quote }}
+  DB_PASSWORD: {{ .Values.dbPassword | quote }}
+  DOCUMENT_CHAT_URL: {{ .Values.DOCUMENT_CHAT_URL | quote }}
+  LOG_INDEX: {{ .Values.projectID | quote }}
+  project_id: {{ .Values.projectID | quote }}
+  vertex_ai_search_summary_url: {{ .Values.vertex_ai_search_summary_url | quote }}
+  vertex_ai_followup_url: {{ .Values.vertex_ai_followup_url | quote }}
+  IS_VERTEX_AI: {{ .Values.IS_VERTEX_AI | quote }}
+  vertex_ai_search_base_url: {{ .Values.vertex_ai_search_base_url | quote }}
+  vertex_ai_init_base_url: {{ .Values.vertex_ai_init_base_url | quote }}
+  APP_VERSION: {{ .Values.APP_VERSION | quote }}
